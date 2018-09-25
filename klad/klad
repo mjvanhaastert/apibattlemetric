@@ -1,0 +1,41 @@
+$json_string = 'https://api.battlemetrics.com/servers/1106399?include=session';
+$jsondata = file_get_contents($json_string);
+$obj = json_decode($jsondata);
+$serverName = $obj->data->attributes->name;
+$serverPlayers = $obj->data->attributes->players;
+$searchPlayer = $_POST['playername'];
+        echo gettype($json_player) . '<br/>';
+        echo gettype($json_player_data) . '<br/>';
+        echo gettype($objp) . '<br/>';
+
+        //            echo $objp->data[$i]->attributes->name . "</br>";
+        //            echo date('H:i:s d-M',strtotime($objp->data[$i]->attributes->createdAt)) . "</br>";
+       //            echo "<tr>";
+//            echo "<td>";
+//            echo $objp->data[$i]->attributes->name;
+//            echo "</td>";
+//            echo "<td>";
+//            echo $i;
+            //var_dump($i);
+//            echo $objp->data[$i]->attributes->name;
+
+        //var_dump($objp);
+//            {
+//            $playerName = $_POST['playername'];
+//            $json_player = 'https://api.battlemetrics.com/players?filter[search]='. $playerName;
+//            $json_player_data = file_get_contents($json_player);
+//            $objp = json_decode($json_player_data);
+//            for ($i = 0; $i < count($array); ++$i){
+//                $searchArray = $array->data[$i]->attributes->name);
+//            };
+//        var_dump($objp->data[1]->attributes->name);
+        //var_dump($objp );
+        //print_r( $objp) ;
+            //echo "<table border='1' width='100%'>";
+            //echo "<th>Nick:</th>";
+            //var_dump($objp)
+
+        //https://api.battlemetrics.com/players?filter[search]=$searchPlayer
+        //https://api.battlemetrics.com/players?filter[search]=$searchPlayer
+
+        //echo "test1" . $searchPlayer = $_POST['playername'] . "</br>";

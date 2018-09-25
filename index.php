@@ -1,27 +1,3 @@
-<?php
-$json_string = 'https://api.battlemetrics.com/servers/1106399?include=session,identifier';
-$jsondata = file_get_contents($json_string);
-$obj = json_decode($jsondata,true);
-
-$serverName = $obj["data"]["attributes"]["name"];
-$serverIp = $obj["data"]["attributes"]["ip"];
-$serverPort = $obj["data"]["attributes"]["port"];
-$serverPlayers = $obj["data"]["attributes"]["players"];
-$serverMaxPlayers = $obj["data"]["attributes"]["maxPlayers"];
-$serverDetails = $obj["data"]["attributes"]["details"];
-$serverRustBuild = $obj["data"]["attributes"]["details"]["rust_build"];
-$serverRustEntCnt = $obj["data"]["attributes"]["details"]["rust_ent_cnt_i"];
-$serverRustWorldSeed = $obj["data"]["attributes"]["details"]["rust_world_seed"];
-$serverRustWorldSize = $obj["data"]["attributes"]["details"]["rust_world_size"];
-$serverRustLastSeedChange = $obj["data"]["attributes"]["details"]["rust_last_seed_change"];
-$serverRustLastWipe = $obj["data"]["attributes"]["details"]["rust_last_wipe"];
-$playerName = $obj["included"]["1"]["attributes"]["name"];
-$playerId = $obj["included"][0]["attributes"]["relationships"]["player"]["data"]["id"];
-$ServerPlayerStartDate = $serverPlayerStart = date($obj["included"]["attributes"]["start"]);
-$serverPlayerStop = $obj["included"]["attributes"]["stop"];
-$old_date = date('l, F d y h:i:s');
-date("d/m/Y H:i A",strtotime($serverPlayerStart));
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,7 +6,7 @@ date("d/m/Y H:i A",strtotime($serverPlayerStart));
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-
+    <?php include 'config_files/api_config.php';?>
     <title>Starter Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
@@ -51,7 +27,7 @@ date("d/m/Y H:i A",strtotime($serverPlayerStart));
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
@@ -68,30 +44,89 @@ date("d/m/Y H:i A",strtotime($serverPlayerStart));
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
 
 <main role="main" class="container">
 
     <div class="starter-template">
-        <?php
-        print_r($serverName ." ". $serverIp.":".$serverPort. "<br>" . " Players:"."$serverPlayers"."/".$serverMaxPlayers. "<br>" .
-            "Rust server build: " . $serverRustBuild . "<br>" . "Server ent cnt:" .  $serverRustEntCnt . "<br>" . "Server seed: " .
-            $serverRustWorldSeed . "<br>" . "World size: " . $serverRustWorldSize . "<br>" . "Last seed change: " . $serverRustLastSeedChange . "<br>" . "Wiped: " .$serverRustLastWipe . "<br>");
 
+        <?php
+        echo($serverName ." ". $serverIp.":".$serverPort. "<br>" . " Players:"."$serverPlayers"."/".$serverMaxPlayers. "<br>" .
+          "Rust server build: " . $serverRustBuild . "<br>" . "Server ent cnt:" .  $serverRustEntCnt . "<br>" . "Server seed: " .
+        $serverRustWorldSeed . "<br>" . "World size: " . $serverRustWorldSize . "<br>" . "Last seed change: " . date("H:i  d-M-Y", strtotime($serverRustLastSeedChange)) . "<br>" . "Wiped: " . date("H:i  d-M-Y", strtotime($serverRustLastWipe)) . "<br>");
+
+        if ($serverRustLastSeedChange == $serverRustLastWipe)
+            print "Server has bin wiped on ". date("d-M-Y",strtotime($serverRustLastWipe));
+        elseif ($serverRustEntCnt < 20)
+            print "The wipe is fake, we check if the seed chance and 'last wipe' date are the same and if the entity is lower then 20 ";
         ?>
 
+        <div><h2>Search test</h2></div>
+
+        <form action="index.php" method="post">
+            Search: <input type="text" name="playername" /><br />
+            <input type="submit" value="Submit" />
+        </form>
+
+        <?php
+        $results = $_POST['playername'];
+        $json_player = 'https://api.battlemetrics.com/players?filter[search]='. $results;
+        $json_player_data = file_get_contents($json_player);
+        $objp = json_decode($json_player_data);
+
+        echo "<table border='1' width='100%'>";
+        echo "<th>id:</th>";
+        echo "<th>Nickname:</th>";
+        echo "<th>createdAt:</th>";
+        echo "<th>updatedAt:</th>";
+        for ($i = 0; $i < count($objp->data); $i++) {
+            echo "<tr>";
+            echo "<td>";
+            echo $objp->data[$i]->attributes->id;
+            echo "</td>";
+            echo "<td>";
+            echo $objp->data[$i]->attributes->name;
+            echo "</td>";
+            echo "<td>";
+            echo date('H:i:s d-M-Y',strtotime($objp->data[$i]->attributes->createdAt));
+            echo "</td>";
+            echo "<td>";
+            echo date('H:i:s d-M-Y',strtotime($objp->data[$i]->attributes->updatedAt));
+            echo "</td>";
+            echo "</tr>";
+        }
+        echo "</table> ";
+        echo $objp->data[$i]->attributes->createdAt;
+         ?>
         <div><h2>Players on server</h2></div>
         <?php
-        $length = count($obj["included"]);
-        for ($i = 0; $i < $length; $i++) {
-            print $obj["included"][$i]["attributes"]["name"]. "<br>" . $obj["included"][$i]["attributes"]["start"];
-        }
+        require_once('config_files/api_config.php');
+        echo "<table border='1' width='100%'>";
+        echo "<th>number</th>";
+        echo "<th>ID:</th>";
+        echo "<th>Nickname:</th>";
+        echo "<th>Joined:</th>";
+        for ($i = 0; $i < $serverPlayers; $i++) {
+            echo "<tr>";
+            echo "<td>";
+            echo $i + 1;
+            echo "</td>";
+            echo "<td>";
+            echo $obj->included[$i]->relationships->player->data->id;
+            echo "</td>";
+            echo "<td>";
+            echo $obj->included[$i]->attributes->name;
+            echo "</td>";
+            echo "<td>";
+            echo date('H:i:s d-M',strtotime($obj->included[$i]->attributes->start));
+            echo "</td>";
+            echo "</tr>";
+        };
+        echo "</table>";
         ?>
+
+
     </div>
 
 </main><!-- /.container -->

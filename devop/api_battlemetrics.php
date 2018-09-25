@@ -1,3 +1,7 @@
+//https://api.battlemetrics.com/servers/<server_id>?include=session
+
+
+
 <?php
 $json_string = 'https://api.battlemetrics.com/servers/1106399?include=session,identifier';
 $jsondata = file_get_contents($json_string);
