@@ -1,8 +1,31 @@
 <?php
 include include '../index.php';
+
+
+//$con=mysqli_connect("localhost","mjvanh1q_battlemetrics","Oi&M6{X}bzuN","mjvanh1q_battlemetrics");
+//// Check connection
+//if (mysqli_connect_errno())
+//  {
+//  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+//  }
+
+// Perform queries
+mysqli_query($con,"SELECT * FROM mjvanh1q_battlemetrics");
+//mysqli_query($con,"INSERT INTO Persons (FirstName,LastName,Age)
+//VALUES ('Glenn','Quagmire',33)");
+
+mysqli_close($con);
+
+
 $json_string = 'https://api.battlemetrics.com/servers/1106399?include=session';
+//$json_string = 'https://api.battlemetrics.com';
 $jsondata = file_get_contents($json_string);
 $obj = json_decode($jsondata);
+
+$apiPlayer = '/players';
+$apiPlayerSearch = 'players?filter[search]';
+$apiServer = '/servers';
+$apiServerInclude= '/include?include=session';
 
 $serverName = $obj->data->attributes->name;
 $serverIp = $obj->data->attributes->ip;

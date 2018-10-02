@@ -39,3 +39,16 @@ $searchPlayer = $_POST['playername'];
         //https://api.battlemetrics.com/players?filter[search]=$searchPlayer
 
         //echo "test1" . $searchPlayer = $_POST['playername'] . "</br>";
+https://api.battlemetrics.com/players?filter[search]=man1c&filter[server][search]=europian%20survivor
+
+mysql info
+datebase = mjvanh1q_battlemetrics
+username = mjvanh1q_battlemetrics
+password = Oi&M6{X}bzuN
+
+Een lijst functie maken:
+    api call get -> information die nodig is.
+    opslaan in een json file, zodat ik later die informatie er uit kan halen.
+    de value van de api die ik wil opslaan, opslaan in een database lijst
+    pagina making voor een lijst
+    lijst moet de mogelijkheid hebben dat gebruiker kan toevoegen/verwijderen

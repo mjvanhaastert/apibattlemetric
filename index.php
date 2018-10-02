@@ -124,14 +124,9 @@
                     $objp = json_decode($json_player_data);
 
                     echo "<table id='table_search_player'>";
-                        echo "<th>select:</th>";
-                        echo "<th>id uit json:</th>";
                         echo "<th>id uit api:</th>";
-                        echo "<th>Nickname: uit json</th>";
                         echo "<th>Nickname: uit api</th>";
-                        echo "<th>First Played <br>uit json</th>";
                         echo "<th>First Played <br>on a server:</th>";
-                        echo "<th>Last Timed Played <br>uit json</th>";
                         echo "<th>Last Timed Played <br>on European Survivor:</th>";
                         for ($i = 0; $i < count($objp->data); $i++) {
                             $SearchPlayer  = json_encode($objp);
@@ -139,35 +134,19 @@
                         if ( isset( $_POST['Submit'] ) ){
 
                         echo "<tr id='tableId' >";
-                                echo "<td>";
-                                echo "<button onclick='myFunction()'>Click me</button>";
-                                echo "</td>";
-                                echo "<td id='{$objp->data[$i]->attributes->id}'>";
-                                echo $SearchPlayerDecode->data[$i]->attributes->id;
-                                echo "</td>";
+
                                 echo "<td>";
                                 echo $objp->data[$i]->attributes->id;
-                                echo "</td>";
-                                echo "<td>";
-                                echo $SearchPlayerDecode->data[$i]->attributes->name;
                                 echo "</td>";
                                 echo "<td>";
                                 echo $objp->data[$i]->attributes->name;
                                 echo "</td>";
                                 echo "<td>";
-                                echo date('H:i:s d-M-Y',strtotime($SearchPlayerDecode->data[$i]->attributes->createdAt));
-                                echo "</td>";
-                                echo "<td>";
                                 echo date('H:i:s d-M-Y',strtotime($objp->data[$i]->attributes->createdAt));
-                                echo "</td>";
-                                echo "<td>";
-                                echo date('H:i:s d-M-Y',strtotime($SearchPlayerDecode->data[$i]->attributes->updatedAt));
                                 echo "</td>";
                                 echo "<td>";
                                 echo date('H:i:s d-M-Y',strtotime($objp->data[$i]->attributes->updatedAt));
                                 echo "</td>";
-                                mysqli_query($conn, "INSERT INTO search_results (search_id, search_name,search_createdAt,search_updatedAt)
-                                VALUES ('{$objp->data[$i]->attributes->id}', '{$objp->data[$i]->attributes->name}', '{$objp->data[$i]->attributes->createdAt}', '{$objp->data[$i]->attributes->updatedAt}')");
 
 
                             }
@@ -321,7 +300,6 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.min.js"><\/script>')</script>
 <script src="http://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
 <script src="http://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
 </body>
