@@ -1,7 +1,12 @@
 <?php
-include include '../index.php';
 
-
+//$servername = "localhost";
+//$username = "mjvanh1q_battlemetrics";
+//$database = "mjvanh1q_battlemetrics";
+//$password = "Oi&M6{X}bzuN";
+//
+//
+//
 //$con=mysqli_connect("localhost","mjvanh1q_battlemetrics","Oi&M6{X}bzuN","mjvanh1q_battlemetrics");
 //// Check connection
 //if (mysqli_connect_errno())
@@ -10,11 +15,11 @@ include include '../index.php';
 //  }
 
 // Perform queries
-mysqli_query($con,"SELECT * FROM mjvanh1q_battlemetrics");
+//mysqli_query($con,"SELECT * FROM mjvanh1q_battlemetrics");
 //mysqli_query($con,"INSERT INTO Persons (FirstName,LastName,Age)
 //VALUES ('Glenn','Quagmire',33)");
 
-mysqli_close($con);
+//mysqli_close($con);
 
 
 $json_string = 'https://api.battlemetrics.com/servers/1106399?include=session';
@@ -22,10 +27,10 @@ $json_string = 'https://api.battlemetrics.com/servers/1106399?include=session';
 $jsondata = file_get_contents($json_string);
 $obj = json_decode($jsondata);
 
-$apiPlayer = '/players';
-$apiPlayerSearch = 'players?filter[search]';
-$apiServer = '/servers';
-$apiServerInclude= '/include?include=session';
+//$apiPlayer = '/players';
+//$apiPlayerSearch = 'players?filter[search]';
+//$apiServer = '/servers';
+//$apiServerInclude= '/include?include=session';
 
 $serverName = $obj->data->attributes->name;
 $serverIp = $obj->data->attributes->ip;
@@ -40,12 +45,24 @@ $serverRustWorldSize = $obj->data->attributes->details->rust_world_size;
 $serverRustLastSeedChange = $obj->data->attributes->details->rust_last_seed_change;
 $serverRustLastWipe = $obj->data->attributes->details->rust_last_wipe;
 
-for ($i = 0; $i < $serverPlayers; $i++) {
-    $playerID = $obj->included[$i]->relationships->player->data->id;
-    $playerNick = $obj->included[$i]->attributes->name;
-    $playerConnect = date('H:i:s d-M',strtotime($obj->included[$i]->attributes->start));
-    };
-return $playerID;
+// Steamapi variables, api urls and all the other stuff i need to get the info
+//
+//$gameAppId = 252490;
+
+
+
+//
+//for ($i = 0; $i < $serverPlayers; $i++) {
+//    $playerID = $obj->included[$i]->relationships->player->data->id;
+//    $playerNick = $obj->included[$i]->attributes->name;
+//    $playerConnect = date('H:i:s d-M',strtotime($obj->included[$i]->attributes->start));
+//    };
+//return $playerID;
+
+
+
+
+
 
     /*todo fix loop search function
 for loop for the search function
@@ -63,7 +80,12 @@ for ($s = 0; $s < count($objp->data); $s++) {
     date('H:i:s d-M-Y',strtotime($objp->data[$s]->attributes->updatedAt))
 
 */
-/**
+
+
+
+?>
+
+    /**
  * Created by PhpStorm.
  * User: man1c
  * Date: 24-9-18
