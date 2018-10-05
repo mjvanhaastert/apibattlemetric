@@ -31,6 +31,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="search.php">Search</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="list.php">List</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -49,7 +52,6 @@
                 <div id="table-top-right" class="col-md-6">
                 <?php echo ("Rust server build: " . $serverRustBuild . "<br>" . "Server ent cnt:" .  $serverRustEntCnt . "<br>" . "Server seed: " . $serverRustWorldSeed . "<br>" . "World size: " . $serverRustWorldSize . "<br>" . "Last seed change: " . date("H:i  d-M-Y", strtotime($serverRustLastSeedChange)) . "<br>" . "Wiped: " . date("H:i  d-M-Y", strtotime($serverRustLastWipe)));
                 // Create connection
-
                 // Create connection
 //                $conn = new mysqli($servername, $username, $password, $database);
 //                // Check connection

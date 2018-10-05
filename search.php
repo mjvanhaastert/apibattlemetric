@@ -34,6 +34,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="search.php">Search</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="list.php">list</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -56,7 +59,7 @@
                     $json_player_data = file_get_contents($json_player);
                     $objp = json_decode($json_player_data);
 
-                    echo "<table id='table_search_player' class=\"table table-bordered table-dark\" style=\"cursor: pointer;\">";
+                    echo "<table id='table_search_player' class=\"table table-bordered table-dark\">";
                     $searchResults = array();
 
                     echo "<th scope=\"col\">id uit api:</th>";
@@ -77,12 +80,12 @@
                                 array_push($playerResultName, $objp->data[$i]->attributes->name);
                                 array_push($playerResultCreatedAt, $objp->data[$i]->attributes->createdAt);
                                 array_push($playerResultUpdatedAt, $objp->data[$i]->attributes->updatedAt);
-                                echo "<tr>";
+                                echo "<tr style=\"cursor: pointer;\" class='clickable-row' id={$objp->data[$i]->attributes->id} >";
 
 
 //                                $playerResult[$i] = $playerResult, $objp->data[$i]->attributes->name;
 
-                                echo "<td id={$objp->data[$i]->attributes->id} >";
+                                echo "<td>";
                                 echo $objp->data[$i]->attributes->id;
                                 echo "</td>";
                                 echo "<td>";
@@ -98,66 +101,61 @@
                             }
                         }
                     }
-
                     ?>
-                    <script>
-                        var mysql = require('mysql');
-                        var con = mysql.createConnection({
-                            host: "localhost",
-                            user: "yourusername",
-                            password: "yourpassword",
-                            database: "mydb"
-                        });
-                        var sql = "INSERT INTO list (varclick) VALUES (tablecel)";
-                        var table = document.getElementById("table_search_player");
-                        if (table != null) {
-                            for (var i = 0; i < table.rows.length; i++) {
-                                for (var j = 0; j < table.rows[i].cells.length; j++)
-                                    table.rows[i].cells[j].onclick = function () {
-                                        tableText(this);
-                                    };
-                            }
-                        }
+<!--                        // var mysql = require('mysql');-->
+<!--                        // var con = mysql.createConnection({-->
+<!--                        //     host: "localhost",-->
+<!--                        //     user: "yourusername",-->
+<!--                        //     password: "yourpassword",-->
+<!--                        //     database: "mydb"-->
+<!--                        // });-->
+<!--                        // var sql = "INSERT INTO list (varclick) VALUES (tablecel)";-->
+<!--                        // var table = document.getElementById("table_search_player");-->
+<!--                        // if (table != null) {-->
+<!--                        //     for (var i = 0; i < table.rows.length; i++) {-->
+<!--                        //         for (var j = 0; j < table.rows[i].cells.length; j++)-->
+<!--                        //             table.rows[i].cells[j].onclick = function () {-->
+<!--                        //                 tableText(this);-->
+<!--                        //             };-->
+<!--                        //     }-->
+<!--                        // }-->
+<!--                        //-->
+<!--                        // function tableText(tableCell) {-->
+<!--                        //     var tablecel = (tableCell.innerHTML);-->
+<!--                        //     window.alert(tablecel);-->
+<!--                        //     var sql = "INSERT INTO list (varclick) VALUES (tablecel)";-->
+<!--                        //     con.query(sql, function (err)-->
+<!--                        // }-->
 
-                        function tableText(tableCell) {
-                            var tablecel = (tableCell.innerHTML);
-                            window.alert(tablecel);
-                            var sql = "INSERT INTO list (varclick) VALUES (tablecel)";
-                            con.query(sql, function (err)
-                        }
-
-                    </script>
                 </div> <!---------------------- div search player -------------------->
 
 
 
 </main><!-- /.container -->
-<script>
-    function addRowHandlers() {
-        var table = document.getElementById("tableId").innerHTML= ;
-        var rows = table.getElementsByTagName("tr");
-        for (i = 0; i < rows.length; i++) {
-            var currentRow = table.rows[i];
-            var createClickHandler =
-                function(row)
-                {
-                    return function() {
-                        var cell = row.getElementsByTagName("td")[0];
-                        var id = cell.innerHTML;
-                        alert("id:" + id);
-                    };
-                };
 
-            currentRow.onclick = createClickHandler(currentRow);
-        }
-    }
-    window.onload = addRowHandlers();
-</script>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="http://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
 <script src="http://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+
+<script>
+    $( ".clickable-row" ).click(function() {
+
+        var clickid = (this).id;
+        alert(clickid);
+        // $.post('my_ajax_receiver.php', 'clickid=' + $(this).clickid(), function (response) {
+        //     alert(response);
+        // });
+        $.ajax({
+            type: 'POST',
+            url: 'my_ajax_receiver.php',
+            data: {'variable': clickid},
+        });
+    });
+
+</script>
 </body>
 </html>
+
