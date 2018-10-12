@@ -145,14 +145,10 @@
 
         var clickid = (this).id;
         alert(clickid);
-        // $.post('my_ajax_receiver.php', 'clickid=' + $(this).clickid(), function (response) {
-        //     alert(response);
-        // });
-        $.ajax({
-            type: 'POST',
-            url: 'my_ajax_receiver.php',
-            data: {'variable': clickid},
+        $.post('my_ajax_receiver.php', 'clickid=' + $(this).clickid(), function (response) {
+            alert(response);
         });
+
     });
 
 </script>

@@ -10,7 +10,6 @@
     session_start();
 
 ?>
-
     <title>Small Group of Friends - really small group... like maby 3 guys... or 4</title>
 
     <!-- Bootstrap core CSS -->
@@ -62,7 +61,6 @@
                 </div>
             </div>
     </div>
-
             <div class="col-md-12">
                 <div><h2>Players on server</h2></div>
                 <?php
@@ -73,14 +71,14 @@
                 echo "<th scope=\"col\">Joined:</th>";
                 for ($i = 0; $i < $serverPlayers; $i++) {
 
-                    echo "<tr id='tr_player'>";
+                    echo "<tr class='clickable-row' id={$obj->included[$i]->relationships->player->data->id} >";
                     echo "<td>";
                     echo $i + 1;
                     echo "</td>";
                     echo "<td>";
                     echo $obj->included[$i]->relationships->player->data->id;
                     echo "</td>";
-                    echo "<td id='td_player'>";
+                    echo "<td>";
                     echo $obj->included[$i]->attributes->name;
                     echo "</td>";
                     echo "<td>";
@@ -104,5 +102,22 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="http://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
 <script src="http://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+<script>
+    // $( ".clickable-row" ).click(function() {
+    //
+    //     const clickid = (this).id;
+    //     alert(clickid);
+    //     $.post('my_ajax_receiver.php', 'clickid=' + $(this).clickid(), function (response) {
+    //         alert(response);
+    //     });
+    //
+    // });
+    var matches = document.querySelectorAll('.clickable-row');
+
+    for (i=0; i<matches.length; i++)
+        console.log(matches[i].innerHTML);
+
+</script>
+
 </body>
 </html>
