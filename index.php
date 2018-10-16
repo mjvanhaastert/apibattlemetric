@@ -63,6 +63,7 @@
     </div>
             <div class="col-md-12">
                 <div><h2>Players on server</h2></div>
+
                 <?php
                 echo "<table id='player_server' class=\"table table-bordered table-dark\">";
                 echo "<th scope=\"col\">number</th>";
@@ -70,24 +71,33 @@
                 echo "<th scope=\"col\">Nickname:</th>";
                 echo "<th scope=\"col\">Joined:</th>";
                 for ($i = 0; $i < $serverPlayers; $i++) {
-
-                    echo "<tr class='clickable-row' id={$obj->included[$i]->relationships->player->data->id} >";
+                    $playerIdOnServer = $obj->included[$i]->relationships->player->data->id;
+                    $playerNameOnServer = $obj->included[$i]->attributes->name;
+                    $playerStartOnServer = date('H:i:s d-M',strtotime($obj->included[$i]->attributes->start));
+                    echo "<tr class='clickable-row' id=$playerIdOnServer >";
                     echo "<td>";
                     echo $i + 1;
                     echo "</td>";
                     echo "<td>";
-                    echo $obj->included[$i]->relationships->player->data->id;
+                    echo $playerIdOnServer;
                     echo "</td>";
                     echo "<td>";
-                    echo $obj->included[$i]->attributes->name;
+                    echo $playerNameOnServer;
                     echo "</td>";
                     echo "<td>";
-                    echo date('H:i:s d-M',strtotime($obj->included[$i]->attributes->start));
+                    echo $playerStartOnServer;
                     echo "</td>";
                     echo "</tr>";
 
-                };
+//                    for($x = 0; $x <= $serverPlayers; $x++){
+//                        $new_array[$x] = array("name" => $playerNameOnServer;
+//                        echo $new_array;
+//                    }
+                }
+
                 echo "</table>";
+
+
                 ?>
 
             </div><!---------------------- div list server player -------------------->
@@ -103,19 +113,19 @@
 <script src="http://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
 <script src="http://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
 <script>
-    // $( ".clickable-row" ).click(function() {
-    //
-    //     const clickid = (this).id;
-    //     alert(clickid);
-    //     $.post('my_ajax_receiver.php', 'clickid=' + $(this).clickid(), function (response) {
-    //         alert(response);
-    //     });
-    //
-    // });
-    var matches = document.querySelectorAll('.clickable-row');
+    $( ".clickable-row" ).click(function() {
 
-    for (i=0; i<matches.length; i++)
-        console.log(matches[i].innerHTML);
+        this.id.click(function () {
+            alert(clickid)
+        })
+
+
+
+    });
+    // var matches = document.querySelectorAll('.clickable-row');
+    //
+    // for (i=0; i<matches.length; i++)
+    //     console.log(matches[i].innerHTML);
 
 </script>
 

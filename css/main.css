@@ -1,3 +1,13 @@
+.container_search{
+    margin-top: 10%;
+    width: 80%;
+    margin-left: auto;
+}
+.container_search input{
+    width: 50%;
+}
+
+
 
 /*#table-top-left{*/
     /*margin-top: 7%;*/
@@ -7,11 +17,9 @@
 /*#table-top-right{*/
     /*margin-top: 7%;*/
     /*padding-left: 2%;*/
-}
+/*}*/
 
-form {
-    margin-left: auto;
-}
+
 
 .container {
     margin-top: 7%;
@@ -54,6 +62,3 @@ form {
     margin-left: 10%;
 }
 
-form{
-    margin-left: 20%;
-}

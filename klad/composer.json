@@ -7,5 +7,10 @@
     "homepage": "https://github.com/SmItH197/SteamAuthentication",
     "authors": [
         
-    ]
+    ],
+  "require": {
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-pdo": "*"
+  }
 }

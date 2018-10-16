@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+        $.getJSON('https://api.battlemetrics.com/players', function(data) {
+
+            var text = `Date: ${data}<br>`
+
+            $(".Idplayer").html(text);
+        });
+
+
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script>-->
+        <!--var settings = {-->
+            <!--"async": true,-->
+            <!--"crossDomain": true,-->
+            <!--"url": "https://api.battlemetrics.com/players",-->
+            <!--"method": "GET"-->
+        <!--}-->
+
+        <!--$.ajax(settings).done(function (response) {-->
+            <!--console.log(response.data[2].id);-->
+
+            <!--var id = response.data[1].id;-->
+            <!--$("#Idplayer").append(response);-->
+        <!--});-->
+    <!--</script>-->
+</head>
+<body>
+<ul class="quoteList"></ul>
+<input type="button" onclick="getData();" value="Go Get It!">
+
+<script>
+
+
+
+
+    // var counter = 0;
+    //
+    // window.getData=function()
+    // {
+    //     /* This IF block has nothing to do with the OP. It just resets everything so the demo can be ran more than once. */
+    //     if (counter===5) {
+    //         $('.quoteList').empty();
+    //         counter = 0;
+    //     }
+    //
+    //     $.ajax({
+    //         /* The whisperingforest.org URL is not longer valid, I found a new one that is similar... */
+    //         url:'https://api.battlemetrics.com/players',
+    //         async: true,
+    //         dataType: 'jsonp',
+    //         success:function(data){
+    //             $('.quoteList').append('<li>' + data.quote +'</li>');
+    //             counter++;
+    //             if (counter < 5) getData();
+    //         }
+    //     });
+    // }
+</script>
+
+
+<div id="Idplayer">ID: </div>
+</body>
+</html>

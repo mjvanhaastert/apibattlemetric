@@ -10,20 +10,22 @@
 </head>
 <body>
 <?php
-if(!isset($_SESSION['steamid'])) {
+//if(!isset($_SESSION['steamid'])) {
+//
+//    echo "welcome guest! please login<br><br>";
+//    loginbutton(); //login button
+//
+//}  else {
+//    include('steamauth/userInfo.php');
+//
+//    //Protected content
+//    echo "Welcome back " . $steamprofile['personaname'] . "</br>";
+//    echo "here is your avatar: </br>" . '<img src="'.$steamprofile['avatarfull'].'" title="" alt="" /><br>'; // Display their avatar!
+//
+//    logoutbutton();
+//}
 
-    echo "welcome guest! please login<br><br>";
-    loginbutton(); //login button
-    
-}  else {
-    include('steamauth/userInfo.php');
 
-    //Protected content
-    echo "Welcome back " . $steamprofile['personaname'] . "</br>";
-    echo "here is your avatar: </br>" . '<img src="'.$steamprofile['avatarfull'].'" title="" alt="" /><br>'; // Display their avatar!
-    
-    logoutbutton();
-}    
 ?>  
 </body>
 </html>
