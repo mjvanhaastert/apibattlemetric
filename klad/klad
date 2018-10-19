@@ -249,3 +249,98 @@ Een lijst functie maken:
 //        };
 //        echo "</table>";
 //        ?>
+get steam user information with his steam id
+https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=66D41E2D2DECB0A3C6842434EE656419&steamids=76561197991276547
+see if person has a ban on his account
+https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=66D41E2D2DECB0A3C6842434EE656419&steamids=76561197991276547
+
+
+
+
+<!--    <script>-->
+<!--        $( ".clickable-row" ).click(function() {-->
+<!--            var ID = this.id;-->
+<!--            var xhttp = new XMLHttpRequest();-->
+<!--            xhttp.open("GET", "config_files/test.txt",true);-->
+<!--            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");-->
+<!--            xhttp.send(ID);-->
+<!---->
+<!--        });-->
+        // $( ".clickable-row" ).click(function() {
+        //
+        // $(document).ready(function(){
+        //     $('.clickable-row').click(function(){
+        //         //do something
+        //     alert("I did something")
+        //     });
+        // });
+        // $( ".clickable-row" ).click(function() {
+        //     // $( this ).slideUp();
+        //     ID = this.id;
+        //     alert ('ID is: ' + ID)
+        //
+        //     });
+        // $.ajax({
+        //     url: "http://www.yourwebsite.com/page.php",
+        //     type: "POST",
+        //     data: { ID },
+        //     success: function(response){
+        //         alert("works")
+        //     },
+        //     error: function(){
+        //         // do action
+        //     }
+        // });
+
+
+        // });
+
+
+        // $(".clickable-row").click(function(){
+        //     $.post("searchplayer.php", $("#searchName").serialize(), function(data) {
+        //         alert(data);
+        //     });
+        // });
+<!--    </script>-->
+<!--<!--    <script type="text/javascript">-->-->
+<!--<!--        jQuery(document).ready(function($){-->-->
+<!--<!--            $(".post").on("click",function(){-->-->
+<!--<!--                $.ajax({-->-->
+<!--<!--                    url: "http://www.yourwebsite.com/page.php",-->-->
+<!--<!--                    type: "POST",-->-->
+<!--<!--                    data: { name: "John", location: "Boston" },-->-->
+<!--<!--                    success: function(response){-->-->
+<!--<!--                        //do action-->-->
+<!--<!--                    },-->-->
+<!--<!--                    error: function(){-->-->
+<!--<!--                        // do action-->-->
+<!--<!--                    }-->-->
+<!--<!--                });-->-->
+<!--<!--            });-->-->
+<!--<!--        });-->-->
+<!--<!--    </script>-->-->
+
+                function loadDoc(url, cFunction) {
+                    var xhttp;
+                    xhttp=new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            cFunction(this);
+                        }
+                    };
+                    xhttp.open("GET", url, true);
+                    xhttp.send();
+                }
+                function myFunction(xhttp) {
+                    document.getElementsByClassName("clickable-row").innerHTML =
+                        xhttp.responseText;
+                }
+
+                // $(".clickable-row").click(function() {
+                //     // var ID = this.id;
+                //     // alert(ID);
+                //     xhttp.open("GET", "test.txt",true);
+                //     // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                //     xhttp.send();
+                //
+                // });

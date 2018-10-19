@@ -3,11 +3,19 @@
     width: 80%;
     margin-left: auto;
 }
-.container_search input{
-    width: 50%;
+
+.col-6{
+    background: #1c7430;
+    width: 40%;
+}
+.col-1{
+    background: #005cbf;
 }
 
 
+.table_search_player{
+    width: 25%;
+}
 
 /*#table-top-left{*/
     /*margin-top: 7%;*/
@@ -18,6 +26,7 @@
     /*margin-top: 7%;*/
     /*padding-left: 2%;*/
 /*}*/
+
 
 
 
