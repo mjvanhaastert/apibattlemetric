@@ -23,22 +23,21 @@
                 <a class="nav-link" href="searchplayer.php">Search</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="list.php">list</a>
+                <a class="nav-link" href="listplayers.php">list</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <div class="container">
-
     <div class="row">
         <div class="col">
             <form action="searchplayer.php" method="post">
             <div class="col" id="search_name">
                 <div class="form-group">
                     <label for="InputSearchPlayer">Search for player</label>
-                    <input type="text" class="form-control" name="inputNamePlayer" id="inputNamePlayer" placeholder="Search player name">
-                    <small id="labelSearchPlayer" class="form-text text-muted">Just give me a name that looks atleast sometimes like it<br>and i will give you 10 results back</small>
+                    <input type="text" class="form-control" name="inputNamePlayer" id="inputNamePlayer" placeholder="Search battlemetric ID">
+
                 </div>
             <button type="submit" name="Submit" class="btn btn-primary">Search Name</button>
             </div>
@@ -71,20 +70,6 @@
 
             </script>
 
-            <!--            <script>-->
-<!--                $(".clickable-row").click(function() {-->
-<!--                    var ID = this.id;-->
-<!--                    alert(ID);-->
-<!--                    var http new xhttp;-->
-<!--                    xhttp.open("POST", "config_files/api_search_player.php", true);-->
-<!--                    xhttp.send(ID);-->
-<!--                    this http;-->
-<!--                });-->
-<!--            </script>-->
-
-<!--            <div class="col-4 position-fixed">-->
-<!--                --><?php //require_once("config_files/api_search_player.php"); listplayers();?>
-<!--            </div>-->
         </div>
 
 
