@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -53,6 +53,18 @@
 
                 <?php require_once("config_files/api_search_player.php"); searchPlayer();?>
 
+
+            <script>
+                import axios = 'node_modules/axios';
+
+                username = 1106399;
+                axios.get('https://api.battlemetrics.com/players/', username)
+                    .then(function(response){
+                        console.log(response.data); // ex.: { user: 'Your User'}
+                        console.log(response.status); // ex.: 200
+                    });
+
+            </script>
 
             <script>
 

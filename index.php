@@ -6,10 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-    <?php include 'config_files/api_config.php';
-    session_start();
-
-?>
+    <?php include 'config_files/api_functions.php'; $data = serverInfo('1106399');?>
     <title>Small Group of Friends - really small group... like maby 3 guys... or 4</title>
 
     <!-- Bootstrap core CSS -->
@@ -28,7 +25,7 @@
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="search.php">Search</a>
+                <a class="nav-link" href="klad/search.php">Search</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="list.php">List</a>
@@ -43,66 +40,48 @@
     <div class="starter-template">
         <div class="containerServerInfo">
             <div class="row">
-                <div id="table-top-left" class="col-md-6">
-                <?php
+                <div class="col-md-6" style="background-color: #0c5460">
+                    <?php
+                    echo $data['server_name']."</br>";
+                    echo $data['server_ip'].":".$data['server_port']."</br>";
+                    echo $data['server_map']."</br>";
+                    echo $data['server_rust_build']."</br>";
 
-                echo($serverName . "<br>". $serverIp.":".$serverPort. "<br>" . " Players:"."$serverPlayers"."/".$serverMaxPlayers)?></div>
-
-                <div id="table-top-right" class="col-md-6">
-                <?php echo ("Rust server build: " . $serverRustBuild . "<br>" . "Server ent cnt:" .  $serverRustEntCnt . "<br>" . "Server seed: " . $serverRustWorldSeed . "<br>" . "World size: " . $serverRustWorldSize . "<br>" . "Last seed change: " . date("H:i  d-M-Y", strtotime($serverRustLastSeedChange)) . "<br>" . "Wiped: " . date("H:i  d-M-Y", strtotime($serverRustLastWipe)));
-                // Create connection
-                // Create connection
-//                $conn = new mysqli($servername, $username, $password, $database);
-//                // Check connection
-//                if ($conn->connect_error) {
-//                    die("Connection failed: " . $conn->connect_error);
-//                }
-//                ?>
+                    ?>
                 </div>
+                <div class="col-md-3" style="background-color: #1e7e34">
+                    <?php
+                    echo $data['server_rust_world_seed']."</br>";
+                    echo $data['server_rust_world_size']."</br>";
+                    echo $data['server_rust_entCnt']."</br>";
+                    echo $data['rust_last_seed_change']."</br>";
+                    echo $data['server_rust_lastWip']."</br>";
+                    ?>
+                </div>
+                <div class="col-md-3" style="background-color: #007bff">
+                    <?php
+                    echo $data['server_players']."/".$data['server_max_players']."</br>";
+                    echo $data['rust_fps']."/".$data['rust_fps_avg']."</br>";
+
+                    ?>
+                </div>
+
             </div>
+        </div>
     </div>
-            <div class="col-md-12">
-                <div><h2>Players on server</h2></div>
-
-                <?php
-                echo "<table id='player_server' class=\"table table-bordered table-dark\">";
-                echo "<th scope=\"col\">number</th>";
-                echo "<th scope=\"col\">ID:</th>";
-                echo "<th scope=\"col\">Nickname:</th>";
-                echo "<th scope=\"col\">Joined:</th>";
-                for ($i = 0; $i < $serverPlayers; $i++) {
-                    $playerIdOnServer = $obj->included[$i]->relationships->player->data->id;
-                    $playerNameOnServer = $obj->included[$i]->attributes->name;
-                    $playerStartOnServer = date('H:i:s d-M',strtotime($obj->included[$i]->attributes->start));
-                    echo "<tr class='clickable-row' id=$playerIdOnServer >";
-                    echo "<td>";
-                    echo $i + 1;
-                    echo "</td>";
-                    echo "<td>";
-                    echo $playerIdOnServer;
-                    echo "</td>";
-                    echo "<td>";
-                    echo $playerNameOnServer;
-                    echo "</td>";
-                    echo "<td>";
-                    echo $playerStartOnServer;
-                    echo "</td>";
-                    echo "</tr>";
-
-//                    for($x = 0; $x <= $serverPlayers; $x++){
-//                        $new_array[$x] = array("name" => $playerNameOnServer;
-//                        echo $new_array;
-//                    }
-                }
-
-                echo "</table>";
-
-
-                ?>
-
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Joined</th>
+            </tr>
+        </thead>
+                <?php include_once "config_files/api_functions.php"; listPlayers('1106399'); ?>
+    </table>
             </div><!---------------------- div list server player -------------------->
 
-    </div>
+
 
 </main><!-- /.container -->
 
