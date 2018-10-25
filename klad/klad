@@ -253,8 +253,11 @@ get steam user information with his steam id
 https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=66D41E2D2DECB0A3C6842434EE656419&steamids=76561197991276547
 see if person has a ban on his account
 https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=66D41E2D2DECB0A3C6842434EE656419&steamids=76561197991276547
-
-
+https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=252490&count=508
+https://api.steampowered.com/IPlayerService/GetSteamLevel/v1/?key=66D41E2D2DECB0A3C6842434EE656419&format=json&steamid=76561197991276547
+https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=66D41E2D2DECB0A3C6842434EE656419&format=json&steamid=76561197991276547+&include_appinfo=1&appids_filter=
+http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=66D41E2D2DECB0A3C6842434EE656419&steamid=76561198371289728&relationship=friend
+href="steam://connect/31.186.250.66:28061"
 
 
 <!--    <script>-->

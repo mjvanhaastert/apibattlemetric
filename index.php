@@ -40,30 +40,35 @@
     <div class="starter-template">
         <div class="containerServerInfo">
             <div class="row">
-                <div class="col-md-6" style="background-color: #0c5460">
-                    <?php
-                    echo $data['server_name']."</br>";
-                    echo $data['server_ip'].":".$data['server_port']."</br>";
-                    echo $data['server_map']."</br>";
-                    echo $data['server_rust_build']."</br>";
+                <div class="col-md-6">
+                    <dl>
+                        <?php ?>
+                        <dt><?php echo $data['server_name'] ?></dt>
+                        <dt><?php
+                            $serverPort = $data['data']['attributes']['port'];
+                            $serverIp = $data['data']['attributes']['ip'];
+                            echo $serverIp;
+//                            echo '<a href="steam://connect/' . $serverIp.':'.$serverPort . '">Link text</a>';
 
-                    ?>
+                            ?></dt>
+                        <dt><?php echo '{<a href="steam://connect/}' . $data['data']['attributes']['ip'].':'.$data['data']['attributes']['port'] . '">'.($data['data']['attributes']['ip'].':').($data['data']['attributes']['port']).'</a>';?></dt>
+                        <dt><?php echo $data['server_map'] ?></dt>
+                        <dt><?php echo $data['server_rust_build'] ?></dt>
+                    </dl>
                 </div>
-                <div class="col-md-3" style="background-color: #1e7e34">
-                    <?php
-                    echo $data['server_rust_world_seed']."</br>";
-                    echo $data['server_rust_world_size']."</br>";
-                    echo $data['server_rust_entCnt']."</br>";
-                    echo $data['rust_last_seed_change']."</br>";
-                    echo $data['server_rust_lastWip']."</br>";
-                    ?>
+                <div class="col-md-3">
+                    <dl>
+                        <dt><?php echo $data['server_rust_world_seed']."/".$data['server_rust_world_size'] ?></dt>
+                        <dt><?php echo $data['server_rust_entCnt'] ?></dt>
+                        <dt><?php echo $data['rust_last_seed_change'] ?></dt>
+                        <dt><?php echo $data['server_rust_lastWip'] ?></dt>
+                    </dl>
                 </div>
-                <div class="col-md-3" style="background-color: #007bff">
-                    <?php
-                    echo $data['server_players']."/".$data['server_max_players']."</br>";
-                    echo $data['rust_fps']."/".$data['rust_fps_avg']."</br>";
-
-                    ?>
+                <div class="col-md-3">
+                    <dl>
+                        <dt><?php echo $data['server_players']."/".$data['server_max_players'] ?></dt>
+                        <dt><?php echo $data['rust_fps']."/".$data['rust_fps_avg'] ?></dt>
+                    </dl>
                 </div>
 
             </div>

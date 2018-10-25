@@ -93,3 +93,50 @@ function serverInfo($serverId){
     return $serverInfo;
 
 }
+
+function playerList(){
+    $conn = new mysqli("localhost", "mjvanh1q_battlemetrics", "Oi&M6{X}bzuN", "mjvanh1q_battlemetrics");
+    $result= mysqli_query($conn, "SELECT * FROM track_player_list");
+
+    while($rows = mysqli_fetch_array($result)):
+        $steamId = $rows['player_steamid'];
+
+        $json_player = "https://api.battlemetrics.com/players/".$rows['player_id']."/servers/1106399";
+        $json_player_data = file_get_contents($json_player);
+        $objp = json_decode($json_player_data);
+        $status = $objp->data->attributes->online;
+
+        $curl = curl_init();
+        // Set some options - we are passing in a useragent too here
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => "https://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key=66D41E2D2DECB0A3C6842434EE656419&steamids=".$steamId,
+            CURLOPT_USERAGENT => 'rust.mjvanhaastert.nl'
+        ));
+
+        $resultsteam = curl_exec($curl);
+        $response = json_decode($resultsteam, true);
+        $NumberOfGameBans = $response['players']['0']['NumberOfGameBans'];
+        $DaysSinceLastBan = $response['players']['0']['DaysSinceLastBan'];
+
+        echo "<tr>";
+        echo "<th scope=\"row\">".$rows['player_id']."</th>";
+        echo "<td>".$rows['player_nick']."</td>";
+        echo "<td>".$rows['player_steamid']."</td>";
+        if ($status == false){
+            echo "<td style='background: rebeccapurple'>"."Offline"."</td>";
+        }
+        else{
+            echo "<td style='background: green'>"."Online" ."<td>";
+        }
+        if ($NumberOfGameBans == false){
+            echo "<td style='background: rebeccapurple'>"."No vac ban"."</td>";
+        }
+        else{
+            echo "<td style='background: green'>"."Game ban" ."</td>";
+            echo "<td style='background: green'>".$DaysSinceLastBan."Days ago"."</td>";
+        }
+        echo "</tr>";
+    endwhile;
+    echo "</table>";
+}

@@ -1,14 +1,14 @@
 <?php
 
-require_once 'config_files/api_functions.php';
+function secondsToTime($seconds) {
+    $dtF = new \DateTime('@0');
+    $dtT = new \DateTime("@$seconds");
+    return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
+}
 
-callAPI('playerId',false,1106399,false);
+echo secondsToTime(1509558491);
+?>
+<html>
 
-/**
- * Created by PhpStorm.
- * User: man1c
- * Date: 22-10-18
- * Time: 19:36
- */
-
-
+<a href="steam://connect/31.186.250.66:28061">test</a>
+</html>
