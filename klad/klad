@@ -533,3 +533,15 @@ href="steam://connect/31.186.250.66:28061"
 <script src="http://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+           <script>
+                import axios = 'node_modules/axios';
+
+                username = 1106399;
+                axios.get('https://api.battlemetrics.com/players/', username)
+                    .then(function(response){
+                        console.log(response.data); // ex.: { user: 'Your User'}
+                        console.log(response.status); // ex.: 200
+                    });
+
+            </script>

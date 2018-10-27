@@ -10,5 +10,16 @@ echo secondsToTime(1509558491);
 ?>
 <html>
 
-<a href="steam://connect/31.186.250.66:28061">test</a>
 </html>
+<script>
+    var base = 'https://api.battlemetrics.com/players/?filter[search]=';
+
+    // use fetch on the /posts route, then pass the response along
+    fetch(base + "Man1C").then(function(response) {
+        // with the response, convert it to JSON, then pass it along
+        response.json().then(function(json) {
+            // print that JSON
+            console.log(json).;
+        });
+    });
+</script>

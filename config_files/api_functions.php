@@ -54,13 +54,11 @@ function listPlayers($serverData){
     $serverPlayers = $data["data"]["attributes"]["players"];
 
     for ($i = 0; $i < $serverPlayers; $i++) {
-
         echo "<tr>";
         echo "<th scope=\"row\">".($i+1)."</th>";
-        echo "<td>".$data['included'][$i]['attributes']['name']."</td>";
+        echo "<td >".'<a style=\'color: inherit;\' href="https://www.battlemetrics.com/players/' . $data['included'][$i]['relationships']['player']['data']['id'].'" target="_blank">'.$data['included'][$i]['attributes']['name'].'</a>'."</td>";
         echo "<td>".date("H:i A - d M",strtotime($data['included'][$i]['attributes']['start']))."</td>";
         echo "</tr>";
-
     }
 }
 
@@ -73,7 +71,8 @@ function listPlayers($serverData){
 function serverInfo($serverId){
     //call callApi() for server information, grab only array['data']
     $data = callApi('server',false,$serverId);
-
+    $serverInfo['server_game'] = $data["data"]["relationships"]["game"]["data"]["id"];
+    $serverInfo['server_id'] = $data["data"]["id"];
     $serverInfo['server_name'] = $data["data"]["attributes"]["name"];
     $serverInfo['server_ip'] = $data["data"]["attributes"]["ip"];
     $serverInfo['server_port'] = $data["data"]["attributes"]["port"];

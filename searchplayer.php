@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>-->
 
 </head>
 
@@ -30,57 +30,65 @@
 </nav>
 
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <form action="searchplayer.php" method="post">
-            <div class="col" id="search_name">
-                <div class="form-group">
-                    <label for="InputSearchPlayer">Search for player</label>
-                    <input type="text" class="form-control" name="inputNamePlayer" id="inputNamePlayer" placeholder="Search battlemetric ID">
-
-                </div>
-            <button type="submit" name="Submit" class="btn btn-primary">Search Name</button>
+    <form id="search_player" method="post" action="">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" id="myNumber" name="form_battlemetric_id" class="form-control" placeholder="Battlemetric ID">
             </div>
-        </form>
+            <div class="col">
+                <input type="text" name="form_username" class="form-control" placeholder="Username">
+            </div>
+            <div class="col">
+                <button id="button" type="submit" class="btn btn-primary" onclick="click()">Search</button>
+            </div>
         </div>
-    </div>
+    </form>
+</div>
+<p id="demo"></p>
+<script>
 
 
+</script>
+
+<?php
+//
+//if (isset($_POST['form_battlemetric_id']) or isset($_POST['form_username'])) {
+//    if ($_POST['form_battlemetric_id'] == true){
+//        searchPlayer();
+////        echo $_POST['form_battlemetric_id'];
+//    }
+//
+//
+//
+////    $test1 = $_POST['form_username'];
+////    echo '<br />The ' . $test .$test1. ' submit button was pressed<br />';
+//}
+//?>
 
         <div class="row" id="search_results">
 
 
-                <?php require_once("config_files/api_search_player.php"); searchPlayer();?>
+<!--                --><?php //require_once("config_files/api_search_player.php"); searchPlayer();?>
 
 
-            <script>
-                import axios = 'node_modules/axios';
 
-                username = 1106399;
-                axios.get('https://api.battlemetrics.com/players/', username)
-                    .then(function(response){
-                        console.log(response.data); // ex.: { user: 'Your User'}
-                        console.log(response.status); // ex.: 200
-                    });
 
-            </script>
-
-            <script>
-
-                $(".clickable-row").click(function() {
-                    var data = new FormData();
-                    data.append("ID", this.id);
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'add.php', true);
-                    xhr.onload = function () {
-                        // do something to response
-                        document.getElementById("search_results").innerHTML = this.responseText;
-                    }   ;
-                    xhr.send(data);
-                });
-
-            </script>
+<!--            <script>-->
+<!---->
+<!--                $(".clickable-row").click(function() {-->
+<!--                    var data = new FormData();-->
+<!--                    data.append("ID", this.id);-->
+<!---->
+<!--                    var xhr = new XMLHttpRequest();-->
+<!--                    xhr.open('POST', 'add.php', true);-->
+<!--                    xhr.onload = function () {-->
+<!--                        // do something to response-->
+<!--                        document.getElementById("search_results").innerHTML = this.responseText;-->
+<!--                    }   ;-->
+<!--                    xhr.send(data);-->
+<!--                });-->
+<!---->
+<!--            </script>-->
 
         </div>
 

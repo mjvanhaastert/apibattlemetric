@@ -43,7 +43,7 @@
 
         <main role="main" class="container">
                 <div class="col-md-12">
-                    <div id="div_search"><h3>Lets see if the fucker is online...</h3></div>
+                    <div id="div_search"><h3>Lets see ...</h3></div>
 
                     <form action="search.php" method="post">
                         Search for a player : <input type="text" name="playername" /><br />

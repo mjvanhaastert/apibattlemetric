@@ -17,6 +17,9 @@
     width: 25%;
 }
 
+.td a {
+    color: inherit;
+}
 /*#table-top-left{*/
     /*margin-top: 7%;*/
     /*padding-left: 2%;*/

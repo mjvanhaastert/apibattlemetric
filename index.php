@@ -25,7 +25,7 @@
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="klad/search.php">Search</a>
+                <a class="nav-link" href="searchplayer.php">Search</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="list.php">List</a>
@@ -43,15 +43,8 @@
                 <div class="col-md-6">
                     <dl>
                         <?php ?>
-                        <dt><?php echo $data['server_name'] ?></dt>
-                        <dt><?php
-                            $serverPort = $data['data']['attributes']['port'];
-                            $serverIp = $data['data']['attributes']['ip'];
-                            echo $serverIp;
-//                            echo '<a href="steam://connect/' . $serverIp.':'.$serverPort . '">Link text</a>';
-
-                            ?></dt>
-                        <dt><?php echo '{<a href="steam://connect/}' . $data['data']['attributes']['ip'].':'.$data['data']['attributes']['port'] . '">'.($data['data']['attributes']['ip'].':').($data['data']['attributes']['port']).'</a>';?></dt>
+                        <dt><?php echo '<a style=\'color: inherit;\'href="https://www.battlemetrics.com/servers/' . $data['server_game'].'/'.$data['server_id'].'" target="_blank">'.$data['server_name'].'</a>';?></dt>
+                        <dt><?php echo '<a style=\'color: inherit;\'href="steam://connect/' . $data['server_ip'].':'.$data['server_port'] . '">'.$data['server_ip'].':'.$data['server_port'].'</a>';?></dt>
                         <dt><?php echo $data['server_map'] ?></dt>
                         <dt><?php echo $data['server_rust_build'] ?></dt>
                     </dl>
@@ -70,7 +63,6 @@
                         <dt><?php echo $data['rust_fps']."/".$data['rust_fps_avg'] ?></dt>
                     </dl>
                 </div>
-
             </div>
         </div>
     </div>
