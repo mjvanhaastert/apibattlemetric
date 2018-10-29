@@ -1,5 +1,9 @@
 <?php
 
+
+
+
+
 //callApi() function for calling the api of battlemetrics
 //$method   - server:
 //          - players: hows players information
@@ -139,3 +143,4 @@ function playerList(){
     endwhile;
     echo "</table>";
 }
+
