@@ -35,12 +35,14 @@
 </nav>
 
 
+
+
 <main role="main" class="container">
 
     <div class="starter-template">
         <div class="containerServerInfo">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-6">
                     <dl>
                         <?php ?>
                         <dt><?php echo '<a style=\'color: inherit;\'href="https://www.battlemetrics.com/servers/' . $data['server_game'].'/'.$data['server_id'].'" target="_blank">'.$data['server_name'].'</a>';?></dt>

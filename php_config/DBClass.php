@@ -1,50 +1,66 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: man1c
- * Date: 29-10-18
- * Time: 18:34
- */
-
 require_once( 'DBSettings.php' );
-//Database class to connect to database and fire queries
-class DBClass extends DatabaseSettings
-{
-    var $classQuery;
-    var $link;
 
-    var $errno = '';
-    var $error = '';
+//$dbhost = 'localhost';
+//// Database name
+//$dbname = 'mjvanh1q_battlemetrics';
+//// Username
+//$dbusername = 'mjvanh1q_battlemetrics';
+//// Password
+//$dbpassword = '-80zuZbq4^&%';
+//$conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
 
-    // Connects to the database
-    function DBClass()
-    {
-        // Load settings from parent class
-        $settings = DatabaseSettings::getSettings();
+function dbconnect($methode){
+    $dbhost = 'localhost';
+// Database name
+    $dbname = 'mjvanh1q_battlemetrics';
+// Username
+    $dbusername = 'mjvanh1q_battlemetrics';
+// Password
+    $dbpassword = '-80zuZbq4^&%';
+//    $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 
-        // Get the main settings from the array we just loaded
-        $host = $settings['dbhost'];
-        $name = $settings['dbname'];
-        $user = $settings['dbusername'];
-        $pass = $settings['dbpassword'];
+    $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
 
-        // Connect to the database
-        $this->link = new mysqli( $host , $user , $pass , $name );
-    }
+    $results = $conn->query("SELECT * FROM battlemetrics_list");
+//    switch ($methode){
+//        case 'query':
+//            $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
+//
+//            $results = $conn->query("SELECT * FROM battlemetrics_list");
+//            print_r( $results);
+//    }
 
-    function insert(){
-        $settings = DatabaseSettings::getSettings();
-
-        $host = $settings['dbhost'];
-        $name = $settings['dbname'];
-        $user = $settings['dbusername'];
-        $pass = $settings['dbpassword'];
-
-        $this->link = new mysqli( $host , $user , $pass , $name );
-
-
-
-
-    }
+return $results;
 
 }
+
+dbconnect('query');
+//
+//class DBClass{
+//
+//    protected $dbhost = 'localhost';
+//$dbname = 'mjvanh1q_battlemetrics';
+//$dbusername = 'mjvanh1q_battlemetrics';
+//$dbpassword = '-80zuZbq4^&%';
+//
+//function DBfunc()
+//{
+//
+//
+//    try {
+//        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
+//        // set the PDO error mode to exception
+//        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//        echo "Connected successfully";
+//    } catch (PDOException $e) {
+//        echo "Connection failed: " . $e->getMessage();
+//    }
+////    return $conn;
+//}
+//
+//}
+
+
+
+
