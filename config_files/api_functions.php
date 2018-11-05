@@ -2,6 +2,66 @@
 
 
 
+function getSettings()
+{
+    // Database variables
+    // Host name
+    $settings['dbhost'] = 'localhost';
+    // Database name
+    $settings['dbname'] = 'mjvanh1q_battlemetrics';
+    // Username
+    $settings['dbusername'] = 'mjvanh1q_battlemetrics';
+    // Password
+    $settings['dbpassword'] = '-80zuZbq4^&%';
+
+    return $settings;
+}
+
+function DBInsert(){
+
+    $settings = getSettings();
+
+    $dbhost = $settings['dbhost'];
+    $dbname = ['dbname'];
+    $dbusername = ['dbusername'];
+    $dbpassword = ['dbpassword'];
+
+    try {
+        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO battlemetrics_player (battlemetrics_list_id, battlemetrics_player_createdat, battlemetrics_player_name)
+    VALUES ('John', 'Doe', 'john@example.com')";
+        // use exec() because no results are returned
+        $conn->exec($sql);
+        echo "New record created successfully";
+    }
+    catch(PDOException $e)
+    {
+        echo $sql . "<br>" . $e->getMessage();
+    }
+
+    $conn = null;
+}
+
+function listDropDown(){
+
+    $settings = getSettings();
+
+    $dbhost = $settings['dbhost'];
+    $dbname = $settings['dbname'];
+    $dbusername = $settings['dbusername'];
+    $dbpassword = $settings['dbpassword'];
+
+
+    $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT battlemetrics_list_id,battlemetrics_list_name,battlemetrics_list_name FROM battlemetrics_list");
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+
+    return $data;
+}
 
 
 //callApi() function for calling the api of battlemetrics
@@ -9,6 +69,7 @@
 //          - players: hows players information
 //          - status: shows if player is online or offline threw boolean
 //          - 'default': search on server for player
+
 function callApi($method,$data,$serverId){
     //url api call
     $apiUrl = 'https://api.battlemetrics.com';

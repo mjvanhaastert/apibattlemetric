@@ -545,3 +545,108 @@ href="steam://connect/31.186.250.66:28061"
                     });
 
             </script>
+
+
+
+
+
+    // add to list of player
+    //     function clickTable(x) {
+    //         var tableIndex = x.rowIndex;
+    //
+    //         var playerId = document.getElementById("searchResults").rows[tableIndex].cells.item(0).innerHTML;
+    //         var playerName = document.getElementById("searchResults").rows[tableIndex].cells.item(1).innerHTML;
+    //         var playerCreatedAt = document.getElementById("searchResults").rows[tableIndex].cells.item(2).innerHTML;
+    //
+    //             if (confirm('Are you sure you want to save '+playerName+' into the database?')) {
+    //                 // var tableIndex = x.rowIndex;
+    //                 //
+    //                 // var playerId = document.getElementById("searchResults").rows[tableIndex].cells.item(0).innerHTML;
+    //                 // var playerName = document.getElementById("searchResults").rows[tableIndex].cells.item(1).innerHTML;
+    //                 // var playerCreatedAt = document.getElementById("searchResults").rows[tableIndex].cells.item(2).innerHTML;
+    //                 // alert('player id = '+playerId+' - playername = '+playerName)
+    //             } else {
+    //                 // Do nothing!
+    //             }
+    //         }
+
+
+
+
+            // var tableIndex = x.rowIndex;
+            //
+            // var playerId = document.getElementById("searchResults").rows[tableIndex].cells.item(0).innerHTML;
+            // var playerName = document.getElementById("searchResults").rows[tableIndex].cells.item(1).innerHTML;
+            // var playerCreatedAt = document.getElementById("searchResults").rows[tableIndex].cells.item(2).innerHTML;
+            // alert('player id = '+playerId+' - playername = '+playerName)
+
+
+
+    // document.getElementById("Search").addEventListener("click",lag);
+    // function lag(event) {
+    //     event.preventDefault();
+    //
+    //     var formData = new FormData();
+    //     var playerName = document.getElementById("player_Name").value;
+    //
+    //     formData.append("player_Name", playerName);
+    //     // formData.append("only_On_Server", onlyOnServer);
+    //
+    //     var request = new XMLHttpRequest();
+    //     request.onload = function() {
+    //         //This is where you handle what to do with the response.
+    //         // The actual data is found on this.responseText
+    //         document.getElementById('notes_list').innerHTML = this.responseText;
+    //
+    //         console.log(this.responseText);
+    //         // console.log(this.responseText);
+    //         // var myArr = JSON.parse(this.responseText);
+    //         // document.getElementById("demo").innerHTML = myArr[0];
+    //     };
+    //
+    //     request.open("POST", "conceptsearchpost.php");
+    //     request.send(formData);
+    // }
+
+
+    //
+    //     var cors_api_host = 'cors-anywhere.herokuapp.com';
+    //     var cors_api_url = 'https://' + cors_api_host + '/';
+    //     var slice = [].slice;
+    //     var origin = window.location.protocol + '//' + window.location.host;
+    //     var open = XMLHttpRequest.prototype.open;
+    //     XMLHttpRequest.prototype.open = function() {
+    //         var args = slice.call(arguments);
+    //         var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(args[1]);
+    //         if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+    //             targetOrigin[1] !== cors_api_host) {
+    //             args[1] = cors_api_url + args[1];
+    //         }
+    //         return open.apply(this, args);
+    //     };
+    // })();
+    //
+    // function searchButton(){
+    //     let player_Name = document.getElementById('player_Name').value;
+    //     let url = 'https://api.battlemetrics.com/players?filter[search]=';
+    //     // axios.defaults.baseURL =  'https://api.battlemetrics.com/players?filter[search]=';
+    //
+    //     axios.get(url,player_Name, { crossdomain: true })
+    //         .then(function (response) {
+    //             console.log(player_Name);
+    //             return console.log(response.data)
+    //         })
+    //         .catch(function (error) {
+    //             return console.log(error)
+    //         })
+    //
+    // }
+
+
+
+
+
+
+    // function table(x) {
+    //     document.getElementById('demo').innerHTML = document.getElementById("searchResults").rows.namedItem("searchResultsRow").innerHTML;
+    // }

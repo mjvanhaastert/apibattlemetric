@@ -14,9 +14,11 @@ function lag(event) {
     request.onload = function() {
         //This is where you handle what to do with the response.
         // The actual data is found on this.responseText
-        document.getElementById('notes_list').innerHTML = this.responseText;
+        // document.getElementById('notes_list').innerHTML = this.responseText;
+        console.log(this.responseText);
     };
 
     request.open("POST", "config_files/searchpost.php");
     request.send(formData);
 }
+

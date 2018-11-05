@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <?php include 'php_config/databaselist.php'; $note = showList();?>
+    <?php include 'config_files/api_functions.php';?>
+
 </head>
 
 <body>
@@ -43,30 +45,6 @@
 
     <div id="playerMessage"></div>
 
-
-    <!--    </div>-->
-<!--    <div class="row">-->
-<!--    <div class="col-3" style="background-color: #6f42c1" id="list">-->
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--            <th scope="col">List Names:</th>-->
-<!--            </thead>-->
-<!--            --><?php //ListTable() ?>
-<!--        </table>-->
-<!--    </div>-->
-<!--    <div class="col-9" style="background-color: #1e7e34">-->
-<!--        <div class="row" id="notes_list" style="background-color: #1c7430">-->
-<!--            <table class="table">-->
-<!--                <thead>-->
-<!--                <th scope="col">Note</th>-->
-<!--                </thead>-->
-<!--                --><?php //NoteList() ?>
-<!--            </table>-->
-<!--        </div>-->
-<!--        <div class="row" id="player_from_list" style="background-color: #5a6268">lasdjflasjdfldjsf</div>-->
-<!--    </div>-->
-<!--    </div>-->
-
     <div id="notes_list">
     </div>
 <div id="list">
@@ -74,8 +52,44 @@
 <div id="player_from_list">
     </div>
 
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Open modal
+    </button>
 
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <?php   $data = listDropDown() ?>
+                    <select name="battlemetrics_list_name" id="battlemetrics_list_name">
+                        <?php foreach ($data as $row): ?>
+                            <option id="<?=$row["battlemetrics_list_id"]?>"><?=$row["battlemetrics_list_name"]?></option>
+                        <?php endforeach ?>
+                    </select>
+
+                    testing
+                    <button onclick="myFunction()">Try it</button>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <p id="demo"></p>
 </main><!-- /.container -->
 
 <!-- Bootstrap core JavaScript
@@ -88,15 +102,29 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 
-    <script src="js/listpage.js"></script>
+<!--    <script src="js/listpage.js"></script>-->
     <script src="js/searchplayer.js"></script>
 
+<script>
+    function myFunction0() {
+        alert(document.getElementById("myTable").rows[1].cells[0].innerHTML);
+   }
+   function myFunction1() {
+        alert(document.getElementById("myTable").rows[2].cells[0].innerHTML);
+   }
+    function myFunction() {
+
+            var x = document.getElementsByTagName("tr");
 
 
+            var i;
+            for (i = 1; i < x.length;i++) {
 
+            }
+            // document.getElementById("demo").innerHTML = txt;
 
-
-
+    }
+</script>
 
 
 
