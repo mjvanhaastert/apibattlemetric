@@ -14,19 +14,15 @@
 <button id="Search" type="submit" class="btn btn-default">Submit</button>
 </form>
 
-
-
 <div id="demo">this is the demo</div>
 <div id="notes_list"> this is the notes_list</div>
 
-
-
-<!--</select>-->
 <div id="myModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
+        <div id="add_player_message">
         So lets add <div id="modalPlayerName"></div> to the list
         Dont forget the select the right list to add him to.
         selected list: <div id="modalListData"></div>
@@ -35,25 +31,25 @@
             <?php include 'php_config/getter.php'; $dropDown = listData();?>
 
             <?php foreach ($dropDown as $row): ?>
-                <option id="<?=$row["battlemetrics_list_id"]?>" value="<?=$row["battlemetrics_list_id"]?>"><?=$row["battlemetrics_list_name"]?></option>
+                <option value="<?=$row["battlemetrics_list_id"]?>" id="<?=$row["battlemetrics_list_id"]?>"><?=$row["battlemetrics_list_name"]?></option>
             <?php endforeach ?>
-
-            <div id="modalMessage"> this is the notes_list</div>
-
         </select>
-        <button type="button" onclick="addTolist()">Add</button>
-
-
+        <button id="addtolistbutton" type="button">Add</button>
+        </div>
     </div>
+</div>
+<div id="tableListResults">
+
+
+
 
 </div>
-
-
 <script>
-
+    // because of battlemetrics i cant do a normal search with javascript.
     // Search Player function
     document.getElementById("Search").addEventListener("click",lag);
     function lag(event) {
+        //stop it from going to the page
         event.preventDefault();
 
         var formData = new FormData();
@@ -68,9 +64,6 @@
             // The actual data is found on this.responseText
             document.getElementById('notes_list').innerHTML = this.responseText;
 
-            // console.log(this.responseText);
-            // var myArr = JSON.parse(this.responseText);
-            // document.getElementById("demo").innerHTML = myArr[0];
         };
 
         request.open("POST", "conceptsearchpost.php");
@@ -88,20 +81,28 @@
 
         // When the user clicks table, open the modal
         function clickTable(x) {
+            //get index number from table so i can use it later to get the right table
             modal.style.display = "block";
             var tableIndex = x.rowIndex;
 
+            //Grab the right value from the selected table
+            // let selectValue = document.getElementById("listDropDownselect").value;
             let modalPlayerId = document.getElementById("searchResults").rows[tableIndex].cells.item(0).innerHTML;
             let modalPlayerName = document.getElementById("modalPlayerName").innerHTML = document.getElementById("searchResults").rows[tableIndex].cells.item(1).innerHTML;
             let modalPlayerDate = document.getElementById("searchResults").rows[tableIndex].cells.item(2).innerHTML;
+
+            //Store everything in session
             sessionStorage.setItem("keyPlayerId",modalPlayerId);
             sessionStorage.setItem("keyPlayerName",modalPlayerName);
             sessionStorage.setItem("keyPlayerDate",modalPlayerDate);
+            sessionStorage.setItem("keySelectValue",selectValue);
 
         }
 
         function selectlist(){
+            //grab the value from selected drop down menu
             let listIdDropDown = document.getElementById("listDropDownselect").value;
+            //and store it in a session
             sessionStorage.setItem("keyListId",listIdDropDown);
         }
 
@@ -117,54 +118,44 @@
             }
         };
 
-    function addTolist(){
+    document.getElementById("addtolistbutton").addEventListener("click",addTolist);
+    function addTolist(event){
+        //stop is from going to the page
+        event.preventDefault();
+
+        var formData = new FormData();
+        //Get value from dropdown menu
+        let selectValue = document.getElementById("listDropDownselect").value;
+        //first grab all the stored session data
         var addPlayerId = sessionStorage.getItem("keyPlayerId");
         var addPlayerName = sessionStorage.getItem("keyPlayerName");
         var addPlayerDate = sessionStorage.getItem("keyPlayerDate");
         var addPlayerListId = sessionStorage.getItem("keyListId");
+        // var addSelectValue = sessionStorage.getItem("keySelectValue");
+        //apppend is all to formData
+        formData.append("add_PlayerId", addPlayerId);
+        formData.append("add_Player_Name", addPlayerName);
+        formData.append("add_Player_Date", addPlayerDate);
+        formData.append("add_Player_ListId", addPlayerListId);
+        formData.append("add_Select_Value", selectValue);
 
-        console.log(addPlayerId,addPlayerName,addPlayerDate,addPlayerListId);
+        // formData.append("only_On_Server", onlyOnServer);
+        var request = new XMLHttpRequest();
+        request.onload = function() {
+            //This is where you handle what to do with the response.
+            // The actual data is found on this.responseText
+            console.log(this.responseText);
+
+            document.getElementById('add_player_message').innerHTML = this.responseText;
+
+            // var myArr = JSON.parse(this.responseText);
+            // document.getElementById("demo").innerHTML = myArr[0];
+        };
+        //send it all to addtolist.php so it can handle the rest
+        request.open("POST", "config_files/addtolist.php");
+        request.send(formData);
 
     }
-
-
-
-        // Search Player function
-        // function addTolist() {
-        //     // event1.preventDefault();
-        //     let data = clickTable();
-        //     let dataListId = selectlist();
-        //
-        //     let dataModalPlayerId = data[0];
-        //     let dataModalPlayerName = data[1];
-        //     let dataModalPlayerDate = data[2];
-        //
-        //     var formData = new FormData();
-        //
-        //     formData.append("dataListId", dataListId);
-        //     formData.append("dataModalPlayerId", dataModalPlayerId);
-        //     formData.append("dataModalPlayerName", dataModalPlayerName);
-        //     formData.append("dataModalPlayerDate", dataModalPlayerDate);
-        //
-        //     console.log("Append data");
-        //     var request = new XMLHttpRequest();
-        //     request.onload = function() {
-        //         //This is where you handle what to do with the response.
-        //         // The actual data is found on this.responseText
-        //         // document.getElementById('modalMessage').innerHTML = this.responseText;
-        //
-        //         console.log(this.responseText);
-        //         // console.log(this.responseText);
-        //         // var myArr = JSON.parse(this.responseText);
-        //         // document.getElementById("demo").innerHTML = myArr[0];
-        //     };
-        //
-        //     request.open("POST", "addtolist.php");
-        //     request.send(formData);
-
-
-
-
 
 </script>
 

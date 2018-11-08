@@ -4,6 +4,7 @@
     <data-source source="LOCAL" name="MySQL - mjvanh1q_battlemetrics@185.56.145.184" uuid="f63d712d-5f07-41b3-b5bb-896c7f6f192f">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://185.56.145.184:3306/mjvanh1q_battlemetrics</jdbc-url>
       <driver-properties>

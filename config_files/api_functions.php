@@ -17,32 +17,6 @@ function getSettings()
     return $settings;
 }
 
-function DBInsert(){
-
-    $settings = getSettings();
-
-    $dbhost = $settings['dbhost'];
-    $dbname = ['dbname'];
-    $dbusername = ['dbusername'];
-    $dbpassword = ['dbpassword'];
-
-    try {
-        $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO battlemetrics_player (battlemetrics_list_id, battlemetrics_player_createdat, battlemetrics_player_name)
-    VALUES ('John', 'Doe', 'john@example.com')";
-        // use exec() because no results are returned
-        $conn->exec($sql);
-        echo "New record created successfully";
-    }
-    catch(PDOException $e)
-    {
-        echo $sql . "<br>" . $e->getMessage();
-    }
-
-    $conn = null;
-}
 
 function listDropDown(){
 
@@ -56,7 +30,7 @@ function listDropDown(){
 
     $conn = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbusername, $dbpassword);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT battlemetrics_list_id,battlemetrics_list_name,battlemetrics_list_name FROM battlemetrics_list");
+    $stmt = $conn->prepare("SELECT battlemetrics_list_id,battlemetrics_list_name FROM battlemetrics_list");
     $stmt->execute();
     $data = $stmt->fetchAll();
 
