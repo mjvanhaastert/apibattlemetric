@@ -20,3 +20,22 @@ include_once 'DBSettings.php';
         echo "Connected successfully";
 
     }
+
+
+    function dropDownList(){
+
+        $DBSettings = getSettings();
+
+        $DBHost = $DBSettings['dbhost'];
+        $DBName = $DBSettings['dbname'];
+        $DBUsername = $DBSettings['dbusername'];
+        $DBPassword = $DBSettings['dbpassword'];
+
+
+        $conn = new PDO("mysql:host=$DBHost;dbname=$DBName", $DBUsername, $DBPassword);
+        $smt = $conn->prepare('select battlemetrics_list_id,battlemetrics_list_name From battlemetrics_list');
+        $smt->execute();
+        $data = $smt->fetchAll();
+        return $data;
+
+}
