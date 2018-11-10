@@ -650,3 +650,30 @@ href="steam://connect/31.186.250.66:28061"
     // function table(x) {
     //     document.getElementById('demo').innerHTML = document.getElementById("searchResults").rows.namedItem("searchResultsRow").innerHTML;
     // }
+
+
+
+
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="add_player_message">
+                So lets add <div id="modalPlayerName"></div> to the list
+                Dont forget the select the right list to add him to.
+                selected list: <div id="modalListData"></div>
+
+                <select>
+                    <?php include_once 'php/database.php'; $dropDown = dropDownList()?>
+
+                    <?php foreach ($dropDown as $row): ?>
+                        <option value="<?=$row["battlemetrics_list_id"]?>" id="<?=$row["battlemetrics_list_id"]?>"><?=$row["battlemetrics_list_name"]?></option>
+                    <?php endforeach ?>
+                </select>
+
+                <button id="addtolistbutton" type="button">Add</button>
+            </div>
+        </div>
+    </div>
+
+     Modal
